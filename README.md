@@ -6,4 +6,4 @@ Protein Secondary Structure Prediction Using Cascaded Convolutional and Recurren
 The report is Noble Kennamer and Wentao Zhu, "Protein Secondary Structure Prediction - A Comprehensive Comparison", UCI, 2017.
 
 
-If you have any problems, please contact with me wentaozhu1991@gmail.com.
+If you have any questions, please contact with me wentaozhu1991@gmail.com.
