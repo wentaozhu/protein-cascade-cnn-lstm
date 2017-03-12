@@ -1,2 +1,4 @@
 # protein-cascade-cnn-lstm
-Implementation of IJCAI15 cascade cnn and LSTM for protein secondary structure prediction
+Implementation of IJCAI16 cascade cnn and LSTM for protein secondary structure prediction
+https://arxiv.org/abs/1604.07176
+Protein Secondary Structure Prediction Using Cascaded Convolutional and Recurrent Neural Networks
