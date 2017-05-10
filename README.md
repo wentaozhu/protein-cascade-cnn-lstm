@@ -7,3 +7,5 @@ The report is Noble Kennamer and Wentao Zhu, "Protein Secondary Structure Predic
 
 
 If you have any questions, please contact with me wentaozhu1991@gmail.com.
+
+The evaluation metric should be weighted accuracy (because there are many blank state in the data), which is in the metrics.py. You can copy the function and paste it into the keras metric.py. Then compile keras, install. 
