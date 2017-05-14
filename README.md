@@ -19,3 +19,7 @@ seq 8 is to use 21 amino acid to predict 8 classes.
 seqpssm8 is to use 21 amino acid and 21 sequence profile to predict 8 classes
 
 seqpssmmultitask8 is to use 21 amino acid and 21 sequence profile to predict 8 classes and solvent property.
+
+test*.py is for getting the predicted labels and calculate the precision, recall.
+
+Pretrained weights for the three models can be downloaded from https://drive.google.com/open?id=0B5Hl9mO74DHvT2VIWGVkMG5XU2s
