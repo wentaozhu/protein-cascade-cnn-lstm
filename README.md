@@ -20,6 +20,18 @@ seqpssm8 is to use 21 amino acid and 21 sequence profile to predict 8 classes
 
 seqpssmmultitask8 is to use 21 amino acid and 21 sequence profile to predict 8 classes and solvent property.
 
+cb6133idp538seq3.py is to use cb6133 + idp538 to do Q3 task. Other settings are the same as seq8
+
+cb6133idp538seqpssm3.py is to use cb6133+idp538 to do Q3 task. Other settings are the same as seqpssm8
+
+cb6133seq3.py is to use cb6133 to do Q3 task. Other settings are the same as seq8 and cb6133idp538seq3.py
+
+cb6133seqpssm3.py is to use cb6133 to do Q3 task. Other seetings are the same as seqpssm8 and cb6133idp538seq3.py
+
+cb6133seqpssmmultitask3.py is to use cb6133 to do Q3 multi-class task. Other settings are the same as seqpssmmultitask8.
+
 test*.py is for getting the predicted labels and calculate the precision, recall.
 
 Pretrained weights for the three models can be downloaded from https://drive.google.com/open?id=0B5Hl9mO74DHvT2VIWGVkMG5XU2s
+
+Extra dataset can be downloaded from https://drive.google.com/open?id=0B5Hl9mO74DHvT2VIWGVkMG5XU2s
