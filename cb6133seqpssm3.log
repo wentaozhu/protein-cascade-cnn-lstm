@@ -1,0 +1,510 @@
+Using Theano backend.
+Using cuDNN version 5005 on context None
+Mapped name None to device cuda1: GeForce GTX TITAN X (0000:02:00.0)
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+main_input (InputLayer)          (None, 700)           0                                            
+____________________________________________________________________________________________________
+embedding_1 (Embedding)          (None, 700, 50)       1050        main_input[0][0]                 
+____________________________________________________________________________________________________
+aux_input (InputLayer)           (None, 700, 21)       0                                            
+____________________________________________________________________________________________________
+concatenate_1 (Concatenate)      (None, 700, 71)       0           embedding_1[0][0]                
+                                                                   aux_input[0][0]                  
+____________________________________________________________________________________________________
+conv1d_1 (Conv1D)                (None, 700, 64)       13696       concatenate_1[0][0]              
+____________________________________________________________________________________________________
+conv1d_2 (Conv1D)                (None, 700, 64)       31872       concatenate_1[0][0]              
+____________________________________________________________________________________________________
+conv1d_3 (Conv1D)                (None, 700, 64)       50048       concatenate_1[0][0]              
+____________________________________________________________________________________________________
+concatenate_2 (Concatenate)      (None, 700, 192)      0           conv1d_1[0][0]                   
+                                                                   conv1d_2[0][0]                   
+                                                                   conv1d_3[0][0]                   
+____________________________________________________________________________________________________
+gru_1 (GRU)                      (None, 700, 300)      443700      concatenate_2[0][0]              
+____________________________________________________________________________________________________
+gru_2 (GRU)                      (None, 700, 300)      443700      concatenate_2[0][0]              
+____________________________________________________________________________________________________
+concatenate_3 (Concatenate)      (None, 700, 600)      0           gru_1[0][0]                      
+                                                                   gru_2[0][0]                      
+____________________________________________________________________________________________________
+gru_3 (GRU)                      (None, 700, 300)      810900      concatenate_3[0][0]              
+____________________________________________________________________________________________________
+gru_4 (GRU)                      (None, 700, 300)      810900      concatenate_3[0][0]              
+____________________________________________________________________________________________________
+concatenate_4 (Concatenate)      (None, 700, 600)      0           gru_3[0][0]                      
+                                                                   gru_4[0][0]                      
+____________________________________________________________________________________________________
+gru_5 (GRU)                      (None, 700, 300)      810900      concatenate_4[0][0]              
+____________________________________________________________________________________________________
+gru_6 (GRU)                      (None, 700, 300)      810900      concatenate_4[0][0]              
+____________________________________________________________________________________________________
+concatenate_5 (Concatenate)      (None, 700, 792)      0           gru_5[0][0]                      
+                                                                   gru_6[0][0]                      
+                                                                   concatenate_2[0][0]              
+____________________________________________________________________________________________________
+time_distributed_1 (TimeDistribu (None, 700, 200)      158600      concatenate_5[0][0]              
+____________________________________________________________________________________________________
+time_distributed_2 (TimeDistribu (None, 700, 200)      40200       time_distributed_1[0][0]         
+____________________________________________________________________________________________________
+main_output (TimeDistributed)    (None, 700, 3)        603         time_distributed_2[0][0]         
+====================================================================================================
+Total params: 4,427,069
+Trainable params: 4,427,069
+Non-trainable params: 0
+____________________________________________________________________________________________________
+./bestacccb6133seqpssm33e-4.h5
+((5534, 700), (5534, 700, 21), (5534, 700, 3), (514, 700), (514, 700, 21), (514, 700, 3))
+Train on 5534 samples, validate on 514 samples
+Epoch 1/150
+Epoch 00000: val_weighted_accuracy improved from -inf to 0.72324, saving model to ./bestacccb6133seqpssm33e-4.h5
+284s - loss: 0.6731 - weighted_accuracy: 0.5812 - val_loss: 0.4717 - val_weighted_accuracy: 0.7232
+Epoch 2/150
+Epoch 00001: val_weighted_accuracy improved from 0.72324 to 0.75906, saving model to ./bestacccb6133seqpssm33e-4.h5
+276s - loss: 0.4455 - weighted_accuracy: 0.7433 - val_loss: 0.3441 - val_weighted_accuracy: 0.7591
+Epoch 3/150
+Epoch 00002: val_weighted_accuracy improved from 0.75906 to 0.77215, saving model to ./bestacccb6133seqpssm33e-4.h5
+280s - loss: 0.3390 - weighted_accuracy: 0.7729 - val_loss: 0.2692 - val_weighted_accuracy: 0.7721
+Epoch 4/150
+Epoch 00003: val_weighted_accuracy improved from 0.77215 to 0.77588, saving model to ./bestacccb6133seqpssm33e-4.h5
+278s - loss: 0.2785 - weighted_accuracy: 0.7825 - val_loss: 0.2248 - val_weighted_accuracy: 0.7759
+Epoch 5/150
+Epoch 00004: val_weighted_accuracy improved from 0.77588 to 0.78400, saving model to ./bestacccb6133seqpssm33e-4.h5
+274s - loss: 0.2405 - weighted_accuracy: 0.7887 - val_loss: 0.1948 - val_weighted_accuracy: 0.7840
+Epoch 6/150
+Epoch 00005: val_weighted_accuracy improved from 0.78400 to 0.78796, saving model to ./bestacccb6133seqpssm33e-4.h5
+277s - loss: 0.2142 - weighted_accuracy: 0.7953 - val_loss: 0.1753 - val_weighted_accuracy: 0.7880
+Epoch 7/150
+Epoch 00006: val_weighted_accuracy improved from 0.78796 to 0.79040, saving model to ./bestacccb6133seqpssm33e-4.h5
+279s - loss: 0.1967 - weighted_accuracy: 0.7999 - val_loss: 0.1622 - val_weighted_accuracy: 0.7904
+Epoch 8/150
+Epoch 00007: val_weighted_accuracy improved from 0.79040 to 0.79355, saving model to ./bestacccb6133seqpssm33e-4.h5
+276s - loss: 0.1848 - weighted_accuracy: 0.8029 - val_loss: 0.1521 - val_weighted_accuracy: 0.7935
+Epoch 9/150
+Epoch 00008: val_weighted_accuracy improved from 0.79355 to 0.79426, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1786 - weighted_accuracy: 0.8014 - val_loss: 0.1461 - val_weighted_accuracy: 0.7943
+Epoch 10/150
+Epoch 00009: val_weighted_accuracy improved from 0.79426 to 0.79542, saving model to ./bestacccb6133seqpssm33e-4.h5
+280s - loss: 0.1708 - weighted_accuracy: 0.8055 - val_loss: 0.1408 - val_weighted_accuracy: 0.7954
+Epoch 11/150
+Epoch 00010: val_weighted_accuracy did not improve
+278s - loss: 0.1659 - weighted_accuracy: 0.8071 - val_loss: 0.1395 - val_weighted_accuracy: 0.7934
+Epoch 12/150
+Epoch 00011: val_weighted_accuracy improved from 0.79542 to 0.79626, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1614 - weighted_accuracy: 0.8097 - val_loss: 0.1352 - val_weighted_accuracy: 0.7963
+Epoch 13/150
+Epoch 00012: val_weighted_accuracy improved from 0.79626 to 0.80003, saving model to ./bestacccb6133seqpssm33e-4.h5
+277s - loss: 0.1578 - weighted_accuracy: 0.8113 - val_loss: 0.1304 - val_weighted_accuracy: 0.8000
+Epoch 14/150
+Epoch 00013: val_weighted_accuracy did not improve
+280s - loss: 0.1547 - weighted_accuracy: 0.8130 - val_loss: 0.1293 - val_weighted_accuracy: 0.7982
+Epoch 15/150
+Epoch 00014: val_weighted_accuracy improved from 0.80003 to 0.80018, saving model to ./bestacccb6133seqpssm33e-4.h5
+277s - loss: 0.1532 - weighted_accuracy: 0.8130 - val_loss: 0.1275 - val_weighted_accuracy: 0.8002
+Epoch 16/150
+Epoch 00015: val_weighted_accuracy improved from 0.80018 to 0.80018, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1518 - weighted_accuracy: 0.8131 - val_loss: 0.1270 - val_weighted_accuracy: 0.8002
+Epoch 17/150
+Epoch 00016: val_weighted_accuracy did not improve
+279s - loss: 0.1496 - weighted_accuracy: 0.8150 - val_loss: 0.1304 - val_weighted_accuracy: 0.7937
+Epoch 18/150
+Epoch 00017: val_weighted_accuracy improved from 0.80018 to 0.80321, saving model to ./bestacccb6133seqpssm33e-4.h5
+279s - loss: 0.1482 - weighted_accuracy: 0.8156 - val_loss: 0.1225 - val_weighted_accuracy: 0.8032
+Epoch 19/150
+Epoch 00018: val_weighted_accuracy did not improve
+274s - loss: 0.1465 - weighted_accuracy: 0.8167 - val_loss: 0.1227 - val_weighted_accuracy: 0.8031
+Epoch 20/150
+Epoch 00019: val_weighted_accuracy improved from 0.80321 to 0.80524, saving model to ./bestacccb6133seqpssm33e-4.h5
+276s - loss: 0.1445 - weighted_accuracy: 0.8187 - val_loss: 0.1205 - val_weighted_accuracy: 0.8052
+Epoch 21/150
+Epoch 00020: val_weighted_accuracy did not improve
+280s - loss: 0.1438 - weighted_accuracy: 0.8190 - val_loss: 0.1210 - val_weighted_accuracy: 0.8036
+Epoch 22/150
+Epoch 00021: val_weighted_accuracy did not improve
+277s - loss: 0.1442 - weighted_accuracy: 0.8177 - val_loss: 0.1218 - val_weighted_accuracy: 0.8020
+Epoch 23/150
+Epoch 00022: val_weighted_accuracy improved from 0.80524 to 0.80566, saving model to ./bestacccb6133seqpssm33e-4.h5
+274s - loss: 0.1423 - weighted_accuracy: 0.8194 - val_loss: 0.1196 - val_weighted_accuracy: 0.8057
+Epoch 24/150
+Epoch 00023: val_weighted_accuracy improved from 0.80566 to 0.80681, saving model to ./bestacccb6133seqpssm33e-4.h5
+278s - loss: 0.1415 - weighted_accuracy: 0.8204 - val_loss: 0.1186 - val_weighted_accuracy: 0.8068
+Epoch 25/150
+Epoch 00024: val_weighted_accuracy did not improve
+278s - loss: 0.1406 - weighted_accuracy: 0.8213 - val_loss: 0.1189 - val_weighted_accuracy: 0.8033
+Epoch 26/150
+Epoch 00025: val_weighted_accuracy did not improve
+275s - loss: 0.1401 - weighted_accuracy: 0.8212 - val_loss: 0.1186 - val_weighted_accuracy: 0.8057
+Epoch 27/150
+Epoch 00026: val_weighted_accuracy did not improve
+274s - loss: 0.1393 - weighted_accuracy: 0.8222 - val_loss: 0.1192 - val_weighted_accuracy: 0.8045
+Epoch 28/150
+Epoch 00027: val_weighted_accuracy improved from 0.80681 to 0.80778, saving model to ./bestacccb6133seqpssm33e-4.h5
+280s - loss: 0.1383 - weighted_accuracy: 0.8237 - val_loss: 0.1172 - val_weighted_accuracy: 0.8078
+Epoch 29/150
+Epoch 00028: val_weighted_accuracy improved from 0.80778 to 0.80815, saving model to ./bestacccb6133seqpssm33e-4.h5
+278s - loss: 0.1386 - weighted_accuracy: 0.8231 - val_loss: 0.1168 - val_weighted_accuracy: 0.8082
+Epoch 30/150
+Epoch 00029: val_weighted_accuracy did not improve
+274s - loss: 0.1382 - weighted_accuracy: 0.8235 - val_loss: 0.1167 - val_weighted_accuracy: 0.8079
+Epoch 31/150
+Epoch 00030: val_weighted_accuracy improved from 0.80815 to 0.80844, saving model to ./bestacccb6133seqpssm33e-4.h5
+277s - loss: 0.1365 - weighted_accuracy: 0.8253 - val_loss: 0.1155 - val_weighted_accuracy: 0.8084
+Epoch 32/150
+Epoch 00031: val_weighted_accuracy did not improve
+279s - loss: 0.1361 - weighted_accuracy: 0.8253 - val_loss: 0.1172 - val_weighted_accuracy: 0.8078
+Epoch 33/150
+Epoch 00032: val_weighted_accuracy improved from 0.80844 to 0.80951, saving model to ./bestacccb6133seqpssm33e-4.h5
+277s - loss: 0.1360 - weighted_accuracy: 0.8253 - val_loss: 0.1156 - val_weighted_accuracy: 0.8095
+Epoch 34/150
+Epoch 00033: val_weighted_accuracy improved from 0.80951 to 0.81003, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1357 - weighted_accuracy: 0.8257 - val_loss: 0.1150 - val_weighted_accuracy: 0.8100
+Epoch 35/150
+Epoch 00034: val_weighted_accuracy improved from 0.81003 to 0.81138, saving model to ./bestacccb6133seqpssm33e-4.h5
+280s - loss: 0.1349 - weighted_accuracy: 0.8271 - val_loss: 0.1141 - val_weighted_accuracy: 0.8114
+Epoch 36/150
+Epoch 00035: val_weighted_accuracy did not improve
+278s - loss: 0.1341 - weighted_accuracy: 0.8280 - val_loss: 0.1144 - val_weighted_accuracy: 0.8103
+Epoch 37/150
+Epoch 00036: val_weighted_accuracy did not improve
+275s - loss: 0.1342 - weighted_accuracy: 0.8281 - val_loss: 0.1155 - val_weighted_accuracy: 0.8090
+Epoch 38/150
+Epoch 00037: val_weighted_accuracy did not improve
+275s - loss: 0.1345 - weighted_accuracy: 0.8275 - val_loss: 0.1151 - val_weighted_accuracy: 0.8104
+Epoch 39/150
+Epoch 00038: val_weighted_accuracy did not improve
+280s - loss: 0.1336 - weighted_accuracy: 0.8284 - val_loss: 0.1150 - val_weighted_accuracy: 0.8111
+Epoch 40/150
+Epoch 00039: val_weighted_accuracy did not improve
+277s - loss: 0.1331 - weighted_accuracy: 0.8290 - val_loss: 0.1167 - val_weighted_accuracy: 0.8079
+Epoch 41/150
+Epoch 00040: val_weighted_accuracy improved from 0.81138 to 0.81257, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1323 - weighted_accuracy: 0.8299 - val_loss: 0.1135 - val_weighted_accuracy: 0.8126
+Epoch 42/150
+Epoch 00041: val_weighted_accuracy did not improve
+278s - loss: 0.1326 - weighted_accuracy: 0.8297 - val_loss: 0.1137 - val_weighted_accuracy: 0.8115
+Epoch 43/150
+Epoch 00042: val_weighted_accuracy did not improve
+279s - loss: 0.1325 - weighted_accuracy: 0.8297 - val_loss: 0.1137 - val_weighted_accuracy: 0.8111
+Epoch 44/150
+Epoch 00043: val_weighted_accuracy improved from 0.81257 to 0.81317, saving model to ./bestacccb6133seqpssm33e-4.h5
+276s - loss: 0.1331 - weighted_accuracy: 0.8291 - val_loss: 0.1131 - val_weighted_accuracy: 0.8132
+Epoch 45/150
+Epoch 00044: val_weighted_accuracy did not improve
+274s - loss: 0.1315 - weighted_accuracy: 0.8311 - val_loss: 0.1146 - val_weighted_accuracy: 0.8105
+Epoch 46/150
+Epoch 00045: val_weighted_accuracy did not improve
+280s - loss: 0.1313 - weighted_accuracy: 0.8313 - val_loss: 0.1143 - val_weighted_accuracy: 0.8120
+Epoch 47/150
+Epoch 00046: val_weighted_accuracy did not improve
+278s - loss: 0.1313 - weighted_accuracy: 0.8312 - val_loss: 0.1131 - val_weighted_accuracy: 0.8128
+Epoch 48/150
+Epoch 00047: val_weighted_accuracy did not improve
+274s - loss: 0.1305 - weighted_accuracy: 0.8326 - val_loss: 0.1136 - val_weighted_accuracy: 0.8115
+Epoch 49/150
+Epoch 00048: val_weighted_accuracy did not improve
+276s - loss: 0.1302 - weighted_accuracy: 0.8326 - val_loss: 0.1136 - val_weighted_accuracy: 0.8123
+Epoch 50/150
+Epoch 00049: val_weighted_accuracy did not improve
+280s - loss: 0.1304 - weighted_accuracy: 0.8323 - val_loss: 0.1131 - val_weighted_accuracy: 0.8128
+Epoch 51/150
+Epoch 00050: val_weighted_accuracy did not improve
+277s - loss: 0.1302 - weighted_accuracy: 0.8329 - val_loss: 0.1144 - val_weighted_accuracy: 0.8119
+Epoch 52/150
+Epoch 00051: val_weighted_accuracy improved from 0.81317 to 0.81375, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1326 - weighted_accuracy: 0.8297 - val_loss: 0.1131 - val_weighted_accuracy: 0.8137
+Epoch 53/150
+Epoch 00052: val_weighted_accuracy did not improve
+278s - loss: 0.1299 - weighted_accuracy: 0.8332 - val_loss: 0.1154 - val_weighted_accuracy: 0.8097
+Epoch 54/150
+Epoch 00053: val_weighted_accuracy improved from 0.81375 to 0.81469, saving model to ./bestacccb6133seqpssm33e-4.h5
+280s - loss: 0.1294 - weighted_accuracy: 0.8339 - val_loss: 0.1122 - val_weighted_accuracy: 0.8147
+Epoch 55/150
+Epoch 00054: val_weighted_accuracy improved from 0.81469 to 0.81599, saving model to ./bestacccb6133seqpssm33e-4.h5
+276s - loss: 0.1287 - weighted_accuracy: 0.8351 - val_loss: 0.1119 - val_weighted_accuracy: 0.8160
+Epoch 56/150
+Epoch 00055: val_weighted_accuracy did not improve
+274s - loss: 0.1280 - weighted_accuracy: 0.8360 - val_loss: 0.1125 - val_weighted_accuracy: 0.8151
+Epoch 57/150
+Epoch 00056: val_weighted_accuracy did not improve
+281s - loss: 0.1277 - weighted_accuracy: 0.8363 - val_loss: 0.1135 - val_weighted_accuracy: 0.8135
+Epoch 58/150
+Epoch 00057: val_weighted_accuracy did not improve
+279s - loss: 0.1278 - weighted_accuracy: 0.8359 - val_loss: 0.1138 - val_weighted_accuracy: 0.8112
+Epoch 59/150
+Epoch 00058: val_weighted_accuracy did not improve
+275s - loss: 0.1288 - weighted_accuracy: 0.8345 - val_loss: 0.1134 - val_weighted_accuracy: 0.8142
+Epoch 60/150
+Epoch 00059: val_weighted_accuracy did not improve
+275s - loss: 0.1282 - weighted_accuracy: 0.8356 - val_loss: 0.1131 - val_weighted_accuracy: 0.8129
+Epoch 61/150
+Epoch 00060: val_weighted_accuracy did not improve
+281s - loss: 0.1285 - weighted_accuracy: 0.8349 - val_loss: 0.1141 - val_weighted_accuracy: 0.8112
+Epoch 62/150
+Epoch 00061: val_weighted_accuracy did not improve
+279s - loss: 0.1276 - weighted_accuracy: 0.8364 - val_loss: 0.1121 - val_weighted_accuracy: 0.8157
+Epoch 63/150
+Epoch 00062: val_weighted_accuracy did not improve
+274s - loss: 0.1274 - weighted_accuracy: 0.8366 - val_loss: 0.1131 - val_weighted_accuracy: 0.8156
+Epoch 64/150
+Epoch 00063: val_weighted_accuracy improved from 0.81599 to 0.81625, saving model to ./bestacccb6133seqpssm33e-4.h5
+279s - loss: 0.1273 - weighted_accuracy: 0.8364 - val_loss: 0.1127 - val_weighted_accuracy: 0.8162
+Epoch 65/150
+Epoch 00064: val_weighted_accuracy did not improve
+280s - loss: 0.1270 - weighted_accuracy: 0.8374 - val_loss: 0.1143 - val_weighted_accuracy: 0.8138
+Epoch 66/150
+Epoch 00065: val_weighted_accuracy did not improve
+277s - loss: 0.1271 - weighted_accuracy: 0.8372 - val_loss: 0.1127 - val_weighted_accuracy: 0.8158
+Epoch 67/150
+Epoch 00066: val_weighted_accuracy did not improve
+274s - loss: 0.1291 - weighted_accuracy: 0.8345 - val_loss: 0.1140 - val_weighted_accuracy: 0.8136
+Epoch 68/150
+Epoch 00067: val_weighted_accuracy did not improve
+280s - loss: 0.1273 - weighted_accuracy: 0.8369 - val_loss: 0.1148 - val_weighted_accuracy: 0.8146
+Epoch 69/150
+Epoch 00068: val_weighted_accuracy improved from 0.81625 to 0.81756, saving model to ./bestacccb6133seqpssm33e-4.h5
+280s - loss: 0.1267 - weighted_accuracy: 0.8377 - val_loss: 0.1113 - val_weighted_accuracy: 0.8176
+Epoch 70/150
+Epoch 00069: val_weighted_accuracy did not improve
+276s - loss: 0.1303 - weighted_accuracy: 0.8332 - val_loss: 0.1129 - val_weighted_accuracy: 0.8157
+Epoch 71/150
+Epoch 00070: val_weighted_accuracy did not improve
+274s - loss: 0.1271 - weighted_accuracy: 0.8375 - val_loss: 0.1118 - val_weighted_accuracy: 0.8168
+Epoch 72/150
+Epoch 00071: val_weighted_accuracy did not improve
+281s - loss: 0.1262 - weighted_accuracy: 0.8382 - val_loss: 0.1119 - val_weighted_accuracy: 0.8165
+Epoch 73/150
+Epoch 00072: val_weighted_accuracy did not improve
+279s - loss: 0.1262 - weighted_accuracy: 0.8386 - val_loss: 0.1127 - val_weighted_accuracy: 0.8146
+Epoch 74/150
+Epoch 00073: val_weighted_accuracy did not improve
+275s - loss: 0.1267 - weighted_accuracy: 0.8379 - val_loss: 0.1118 - val_weighted_accuracy: 0.8158
+Epoch 75/150
+Epoch 00074: val_weighted_accuracy improved from 0.81756 to 0.81856, saving model to ./bestacccb6133seqpssm33e-4.h5
+278s - loss: 0.1252 - weighted_accuracy: 0.8394 - val_loss: 0.1115 - val_weighted_accuracy: 0.8186
+Epoch 76/150
+Epoch 00075: val_weighted_accuracy did not improve
+281s - loss: 0.1250 - weighted_accuracy: 0.8399 - val_loss: 0.1117 - val_weighted_accuracy: 0.8172
+Epoch 77/150
+Epoch 00076: val_weighted_accuracy did not improve
+278s - loss: 0.1266 - weighted_accuracy: 0.8377 - val_loss: 0.1132 - val_weighted_accuracy: 0.8144
+Epoch 78/150
+Epoch 00077: val_weighted_accuracy did not improve
+274s - loss: 0.1271 - weighted_accuracy: 0.8374 - val_loss: 0.1157 - val_weighted_accuracy: 0.8094
+Epoch 79/150
+Epoch 00078: val_weighted_accuracy did not improve
+278s - loss: 0.1267 - weighted_accuracy: 0.8376 - val_loss: 0.1115 - val_weighted_accuracy: 0.8175
+Epoch 80/150
+Epoch 00079: val_weighted_accuracy did not improve
+280s - loss: 0.1251 - weighted_accuracy: 0.8400 - val_loss: 0.1135 - val_weighted_accuracy: 0.8163
+Epoch 81/150
+Epoch 00080: val_weighted_accuracy did not improve
+278s - loss: 0.1247 - weighted_accuracy: 0.8404 - val_loss: 0.1125 - val_weighted_accuracy: 0.8164
+Epoch 82/150
+Epoch 00081: val_weighted_accuracy improved from 0.81856 to 0.81896, saving model to ./bestacccb6133seqpssm33e-4.h5
+275s - loss: 0.1243 - weighted_accuracy: 0.8410 - val_loss: 0.1110 - val_weighted_accuracy: 0.8190
+Epoch 83/150
+Epoch 00082: val_weighted_accuracy did not improve
+279s - loss: 0.1241 - weighted_accuracy: 0.8413 - val_loss: 0.1115 - val_weighted_accuracy: 0.8163
+Epoch 84/150
+Epoch 00083: val_weighted_accuracy did not improve
+279s - loss: 0.1276 - weighted_accuracy: 0.8368 - val_loss: 0.1123 - val_weighted_accuracy: 0.8155
+Epoch 85/150
+Epoch 00084: val_weighted_accuracy did not improve
+275s - loss: 0.1278 - weighted_accuracy: 0.8365 - val_loss: 0.1117 - val_weighted_accuracy: 0.8168
+Epoch 86/150
+Epoch 00085: val_weighted_accuracy did not improve
+276s - loss: 0.1243 - weighted_accuracy: 0.8415 - val_loss: 0.1115 - val_weighted_accuracy: 0.8174
+Epoch 87/150
+Epoch 00086: val_weighted_accuracy did not improve
+281s - loss: 0.1242 - weighted_accuracy: 0.8415 - val_loss: 0.1112 - val_weighted_accuracy: 0.8180
+Epoch 88/150
+Epoch 00087: val_weighted_accuracy did not improve
+279s - loss: 0.1234 - weighted_accuracy: 0.8420 - val_loss: 0.1130 - val_weighted_accuracy: 0.8168
+Epoch 89/150
+Epoch 00088: val_weighted_accuracy did not improve
+274s - loss: 0.1261 - weighted_accuracy: 0.8383 - val_loss: 0.1136 - val_weighted_accuracy: 0.8150
+Epoch 90/150
+Epoch 00089: val_weighted_accuracy did not improve
+278s - loss: 0.1239 - weighted_accuracy: 0.8415 - val_loss: 0.1120 - val_weighted_accuracy: 0.8176
+Epoch 91/150
+Epoch 00090: val_weighted_accuracy did not improve
+280s - loss: 0.1232 - weighted_accuracy: 0.8425 - val_loss: 0.1117 - val_weighted_accuracy: 0.8180
+Epoch 92/150
+Epoch 00091: val_weighted_accuracy did not improve
+277s - loss: 0.1231 - weighted_accuracy: 0.8427 - val_loss: 0.1131 - val_weighted_accuracy: 0.8149
+Epoch 93/150
+Epoch 00092: val_weighted_accuracy did not improve
+274s - loss: 0.1264 - weighted_accuracy: 0.8382 - val_loss: 0.1120 - val_weighted_accuracy: 0.8170
+Epoch 94/150
+Epoch 00093: val_weighted_accuracy did not improve
+280s - loss: 0.1232 - weighted_accuracy: 0.8426 - val_loss: 0.1112 - val_weighted_accuracy: 0.8181
+Epoch 95/150
+Epoch 00094: val_weighted_accuracy did not improve
+279s - loss: 0.1226 - weighted_accuracy: 0.8427 - val_loss: 0.1109 - val_weighted_accuracy: 0.8186
+Epoch 96/150
+Epoch 00095: val_weighted_accuracy did not improve
+276s - loss: 0.1230 - weighted_accuracy: 0.8422 - val_loss: 0.1129 - val_weighted_accuracy: 0.8149
+Epoch 97/150
+Epoch 00096: val_weighted_accuracy did not improve
+275s - loss: 0.1224 - weighted_accuracy: 0.8433 - val_loss: 0.1136 - val_weighted_accuracy: 0.8151
+Epoch 98/150
+Epoch 00097: val_weighted_accuracy did not improve
+281s - loss: 0.1222 - weighted_accuracy: 0.8433 - val_loss: 0.1118 - val_weighted_accuracy: 0.8172
+Epoch 99/150
+Epoch 00098: val_weighted_accuracy did not improve
+279s - loss: 0.1237 - weighted_accuracy: 0.8414 - val_loss: 0.1121 - val_weighted_accuracy: 0.8171
+Epoch 100/150
+Epoch 00099: val_weighted_accuracy did not improve
+276s - loss: 0.1229 - weighted_accuracy: 0.8425 - val_loss: 0.1120 - val_weighted_accuracy: 0.8168
+Epoch 101/150
+Epoch 00100: val_weighted_accuracy did not improve
+276s - loss: 0.1222 - weighted_accuracy: 0.8435 - val_loss: 0.1118 - val_weighted_accuracy: 0.8169
+Epoch 102/150
+Epoch 00101: val_weighted_accuracy did not improve
+281s - loss: 0.1219 - weighted_accuracy: 0.8438 - val_loss: 0.1120 - val_weighted_accuracy: 0.8173
+Epoch 103/150
+Epoch 00102: val_weighted_accuracy did not improve
+279s - loss: 0.1219 - weighted_accuracy: 0.8435 - val_loss: 0.1110 - val_weighted_accuracy: 0.8170
+Epoch 104/150
+Epoch 00103: val_weighted_accuracy did not improve
+275s - loss: 0.1220 - weighted_accuracy: 0.8440 - val_loss: 0.1116 - val_weighted_accuracy: 0.8179
+Epoch 105/150
+Epoch 00104: val_weighted_accuracy did not improve
+276s - loss: 0.1214 - weighted_accuracy: 0.8446 - val_loss: 0.1140 - val_weighted_accuracy: 0.8149
+Epoch 106/150
+Epoch 00105: val_weighted_accuracy did not improve
+281s - loss: 0.1214 - weighted_accuracy: 0.8445 - val_loss: 0.1122 - val_weighted_accuracy: 0.8169
+Epoch 107/150
+Epoch 00106: val_weighted_accuracy did not improve
+279s - loss: 0.1214 - weighted_accuracy: 0.8444 - val_loss: 0.1129 - val_weighted_accuracy: 0.8162
+Epoch 108/150
+Epoch 00107: val_weighted_accuracy did not improve
+274s - loss: 0.1306 - weighted_accuracy: 0.8329 - val_loss: 0.1130 - val_weighted_accuracy: 0.8162
+Epoch 109/150
+Epoch 00108: val_weighted_accuracy did not improve
+277s - loss: 0.1240 - weighted_accuracy: 0.8417 - val_loss: 0.1122 - val_weighted_accuracy: 0.8167
+Epoch 110/150
+Epoch 00109: val_weighted_accuracy did not improve
+280s - loss: 0.1223 - weighted_accuracy: 0.8441 - val_loss: 0.1126 - val_weighted_accuracy: 0.8164
+Epoch 111/150
+Epoch 00110: val_weighted_accuracy did not improve
+278s - loss: 0.1215 - weighted_accuracy: 0.8447 - val_loss: 0.1115 - val_weighted_accuracy: 0.8176
+Epoch 112/150
+Epoch 00111: val_weighted_accuracy did not improve
+274s - loss: 0.1204 - weighted_accuracy: 0.8461 - val_loss: 0.1130 - val_weighted_accuracy: 0.8157
+Epoch 113/150
+Epoch 00112: val_weighted_accuracy did not improve
+279s - loss: 0.1206 - weighted_accuracy: 0.8460 - val_loss: 0.1119 - val_weighted_accuracy: 0.8175
+Epoch 114/150
+Epoch 00113: val_weighted_accuracy did not improve
+280s - loss: 0.1199 - weighted_accuracy: 0.8468 - val_loss: 0.1130 - val_weighted_accuracy: 0.8151
+Epoch 115/150
+Epoch 00114: val_weighted_accuracy did not improve
+277s - loss: 0.1200 - weighted_accuracy: 0.8467 - val_loss: 0.1112 - val_weighted_accuracy: 0.8186
+Epoch 116/150
+Epoch 00115: val_weighted_accuracy did not improve
+274s - loss: 0.1199 - weighted_accuracy: 0.8466 - val_loss: 0.1124 - val_weighted_accuracy: 0.8157
+Epoch 117/150
+Epoch 00116: val_weighted_accuracy did not improve
+280s - loss: 0.1193 - weighted_accuracy: 0.8476 - val_loss: 0.1120 - val_weighted_accuracy: 0.8170
+Epoch 118/150
+Epoch 00117: val_weighted_accuracy did not improve
+278s - loss: 0.1196 - weighted_accuracy: 0.8472 - val_loss: 0.1116 - val_weighted_accuracy: 0.8177
+Epoch 119/150
+Epoch 00118: val_weighted_accuracy did not improve
+275s - loss: 0.1192 - weighted_accuracy: 0.8475 - val_loss: 0.1129 - val_weighted_accuracy: 0.8158
+Epoch 120/150
+Epoch 00119: val_weighted_accuracy did not improve
+276s - loss: 0.1190 - weighted_accuracy: 0.8478 - val_loss: 0.1277 - val_weighted_accuracy: 0.7941
+Epoch 121/150
+Epoch 00120: val_weighted_accuracy did not improve
+281s - loss: 0.1269 - weighted_accuracy: 0.8377 - val_loss: 0.1117 - val_weighted_accuracy: 0.8174
+Epoch 122/150
+Epoch 00121: val_weighted_accuracy did not improve
+279s - loss: 0.1204 - weighted_accuracy: 0.8461 - val_loss: 0.1122 - val_weighted_accuracy: 0.8163
+Epoch 123/150
+Epoch 00122: val_weighted_accuracy did not improve
+275s - loss: 0.1195 - weighted_accuracy: 0.8472 - val_loss: 0.1141 - val_weighted_accuracy: 0.8144
+Epoch 124/150
+Epoch 00123: val_weighted_accuracy did not improve
+276s - loss: 0.1196 - weighted_accuracy: 0.8473 - val_loss: 0.1120 - val_weighted_accuracy: 0.8160
+Epoch 125/150
+Epoch 00124: val_weighted_accuracy did not improve
+281s - loss: 0.1190 - weighted_accuracy: 0.8477 - val_loss: 0.1110 - val_weighted_accuracy: 0.8181
+Epoch 126/150
+Epoch 00125: val_weighted_accuracy did not improve
+278s - loss: 0.1188 - weighted_accuracy: 0.8481 - val_loss: 0.1108 - val_weighted_accuracy: 0.8177
+Epoch 127/150
+Epoch 00126: val_weighted_accuracy did not improve
+274s - loss: 0.1187 - weighted_accuracy: 0.8482 - val_loss: 0.1125 - val_weighted_accuracy: 0.8162
+Epoch 128/150
+Epoch 00127: val_weighted_accuracy did not improve
+278s - loss: 0.1183 - weighted_accuracy: 0.8491 - val_loss: 0.1125 - val_weighted_accuracy: 0.8189
+Epoch 129/150
+Epoch 00128: val_weighted_accuracy did not improve
+280s - loss: 0.1182 - weighted_accuracy: 0.8492 - val_loss: 0.1118 - val_weighted_accuracy: 0.8187
+Epoch 130/150
+Epoch 00129: val_weighted_accuracy did not improve
+277s - loss: 0.1180 - weighted_accuracy: 0.8490 - val_loss: 0.1117 - val_weighted_accuracy: 0.8184
+Epoch 131/150
+Epoch 00130: val_weighted_accuracy did not improve
+274s - loss: 0.1182 - weighted_accuracy: 0.8490 - val_loss: 0.1116 - val_weighted_accuracy: 0.8176
+Epoch 132/150
+Epoch 00131: val_weighted_accuracy did not improve
+280s - loss: 0.1179 - weighted_accuracy: 0.8495 - val_loss: 0.1113 - val_weighted_accuracy: 0.8177
+Epoch 133/150
+Epoch 00132: val_weighted_accuracy did not improve
+280s - loss: 0.1269 - weighted_accuracy: 0.8369 - val_loss: 0.1124 - val_weighted_accuracy: 0.8151
+Epoch 134/150
+Epoch 00133: val_weighted_accuracy did not improve
+277s - loss: 0.1199 - weighted_accuracy: 0.8470 - val_loss: 0.1122 - val_weighted_accuracy: 0.8181
+Epoch 135/150
+Epoch 00134: val_weighted_accuracy did not improve
+274s - loss: 0.1183 - weighted_accuracy: 0.8492 - val_loss: 0.1119 - val_weighted_accuracy: 0.8186
+Epoch 136/150
+Epoch 00135: val_weighted_accuracy did not improve
+281s - loss: 0.1175 - weighted_accuracy: 0.8502 - val_loss: 0.1121 - val_weighted_accuracy: 0.8177
+Epoch 137/150
+Epoch 00136: val_weighted_accuracy did not improve
+279s - loss: 0.1176 - weighted_accuracy: 0.8500 - val_loss: 0.1118 - val_weighted_accuracy: 0.8166
+Epoch 138/150
+Epoch 00137: val_weighted_accuracy did not improve
+276s - loss: 0.1175 - weighted_accuracy: 0.8503 - val_loss: 0.1117 - val_weighted_accuracy: 0.8177
+Epoch 139/150
+Epoch 00138: val_weighted_accuracy did not improve
+275s - loss: 0.1169 - weighted_accuracy: 0.8509 - val_loss: 0.1113 - val_weighted_accuracy: 0.8189
+Epoch 140/150
+Epoch 00139: val_weighted_accuracy did not improve
+280s - loss: 0.1173 - weighted_accuracy: 0.8505 - val_loss: 0.1121 - val_weighted_accuracy: 0.8177
+Epoch 141/150
+Epoch 00140: val_weighted_accuracy did not improve
+279s - loss: 0.1167 - weighted_accuracy: 0.8511 - val_loss: 0.1121 - val_weighted_accuracy: 0.8173
+Epoch 142/150
+Epoch 00141: val_weighted_accuracy did not improve
+275s - loss: 0.1169 - weighted_accuracy: 0.8507 - val_loss: 0.1129 - val_weighted_accuracy: 0.8163
+Epoch 143/150
+Epoch 00142: val_weighted_accuracy did not improve
+274s - loss: 0.1170 - weighted_accuracy: 0.8505 - val_loss: 0.1123 - val_weighted_accuracy: 0.8181
+Epoch 144/150
+Epoch 00143: val_weighted_accuracy did not improve
+274s - loss: 0.1164 - weighted_accuracy: 0.8511 - val_loss: 0.1133 - val_weighted_accuracy: 0.8182
+Epoch 145/150
+Epoch 00144: val_weighted_accuracy did not improve
+274s - loss: 0.1153 - weighted_accuracy: 0.8529 - val_loss: 0.1115 - val_weighted_accuracy: 0.8186
+Epoch 146/150
+Epoch 00145: val_weighted_accuracy did not improve
+274s - loss: 0.1159 - weighted_accuracy: 0.8519 - val_loss: 0.1110 - val_weighted_accuracy: 0.8182
+Epoch 147/150
+Epoch 00146: val_weighted_accuracy did not improve
+274s - loss: 0.1153 - weighted_accuracy: 0.8530 - val_loss: 0.1126 - val_weighted_accuracy: 0.8174
+Epoch 148/150
+Epoch 00147: val_weighted_accuracy did not improve
+274s - loss: 0.1159 - weighted_accuracy: 0.8520 - val_loss: 0.1128 - val_weighted_accuracy: 0.8175
+Epoch 149/150
+Epoch 00148: val_weighted_accuracy did not improve
+274s - loss: 0.1173 - weighted_accuracy: 0.8502 - val_loss: 0.1116 - val_weighted_accuracy: 0.8179
+Epoch 150/150
+Epoch 00149: val_weighted_accuracy did not improve
+274s - loss: 0.1159 - weighted_accuracy: 0.8524 - val_loss: 0.1117 - val_weighted_accuracy: 0.8187
